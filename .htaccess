@@ -1,0 +1,6 @@
+php_value display_errors On
+php_value mbstring.http_input auto
+php_value date.timezone Europe/Dublin
+php_flag display_errors on
+DirectoryIndex index.html index.htm
+

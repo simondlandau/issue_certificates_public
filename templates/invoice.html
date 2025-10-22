@@ -1,0 +1,127 @@
+<?php
+// invoice.php
+require_once 'header.php';
+require_once 'config.php';
+
+if (!isset($_GET['id'])) die("No registration ID provided.");
+
+$id = (int)$_GET['id'];
+
+// Fetch record
+$stmt = $pdo->prepare("SELECT * FROM registration WHERE id = ?");
+$stmt->execute([$id]);
+$record = $stmt->fetch();
+
+if (!$record) die("Record not found.");
+
+$currentDate = date('d-m-Y');
+$createdDate = date('d-m-Y', strtotime($record['created_at']));
+?>
+
+<main class="content" style="max-width:800px; margin:20px auto; font-family:Arial, sans-serif;">
+
+    <style>
+        /* Responsive and print-friendly invoice styles */
+        @media print {
+            .create-btn { display:none; }
+            body { margin:0; }
+            .content { margin:0; }
+        }
+
+        .invoice-header {
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:space-between;
+            margin-bottom:20px;
+        }
+
+        .invoice-header .right, .invoice-header .left {
+            flex:1 1 300px;
+        }
+
+        .invoice-header .right { text-align:right; }
+        .invoice-header .left { text-align:left; }
+
+        table.invoice-table {
+            width:100%;
+            border-collapse:collapse;
+            margin-bottom:20px;
+        }
+
+        table.invoice-table th, table.invoice-table td {
+            border:1px solid #ddd;
+            padding:8px;
+        }
+
+        table.invoice-table th {
+            background-color:#f2f2f2;
+        }
+
+        table.invoice-table td.text-right { text-align:right; }
+        table.invoice-table td.text-center { text-align:center; }
+
+        .payment-button {
+            display:inline-block;
+            background-color:#4CAF50;
+            color:white;
+            padding:8px 16px;
+            border-radius:4px;
+            text-decoration:none;
+            margin-top:10px;
+            transition:background-color 0.2s ease;
+        }
+
+        .payment-button:hover {
+            background-color:#45a049;
+        }
+    </style>
+
+    <!-- Invoice Header -->
+    <div class="invoice-header">
+        <!-- Right-aligned address -->
+        <div class="right">
+            <div><strong>Invoice Date:</strong> <?php echo $currentDate; ?></div>
+        </div>
+
+        <!-- Left-aligned invoice info -->
+        <div class="left">
+            <div><strong>Invoice To:</strong> <?php echo htmlspecialchars($record['principal_name']); ?></div>
+            <div><?php echo htmlspecialchars($record['broker_name']); ?></div>
+            <div><?php echo htmlspecialchars($record['address'] . ' ' . $record['building_name']); ?></div>
+            <div><?php echo htmlspecialchars($record['street_name']); ?></div>
+            <div><?php echo htmlspecialchars($record['town']); ?></div>
+            <div><?php echo htmlspecialchars($record['country'] . ' ' . $record['postcode']); ?></div>
+        </div>
+    </div>
+
+    <!-- Invoice Table -->
+<table class="invoice-table">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th class="text-center">Qty</th>
+            <th class="text-right">Cost US$</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Permit as an Insurance <?php echo htmlspecialchars($record['broker_type']); ?> requested on <?php echo $createdDate; ?></td>
+            <td class="text-center">One</td>
+            <td class="text-right">$<?php echo number_format($record['cost'], 2); ?></td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="2" class="text-right"><strong>Total:</strong></td>
+            <td class="text-right"><strong>$<?php echo number_format($record['cost'], 2); ?></strong></td>
+        </tr>
+    </tfoot>
+</table>
+
+    <!-- Make Payment Button -->
+    <a href="payment.php?id=<?php echo urlencode($record['id']); ?>" class="payment-button">Make Payment</a>
+
+</main>
+
+<?php require_once 'footer.php'; ?>
+

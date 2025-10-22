@@ -1,0 +1,287 @@
+/* Basic Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body { font-family: Arial, Helvetica, sans-serif; background:#f5f6f8; color:#222; line-height: 1.6; }
+
+.page { max-width: 1000px; width: 100%; margin: 0 auto; background: #fff; min-height: 100vh; display:flex; flex-direction:column; }
+
+.header {
+  display:flex;
+  align-items:center;
+  justify-content:center;   /* center everything in header */
+  padding: 16px 20px;
+  gap: 16px;
+  position: relative;
+  background: paleturquoise;  /* ✅ pale turquoise background */
+}
+.brand {
+  text-align:center;   /* ✅ center text block */
+}
+
+.title {
+  font-size: 28px;
+  color: royalblue;    /* ✅ royal blue font */
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 20px;               /* ✅ 18px */
+  color: gold;                 /* ✅ silver font */
+  font-style: italic;            /* ✅ italics */
+  text-shadow: 1px 1px 2px #000; /* ✅ soft shadow */
+  text-align: center;            /* ✅ centered */
+}
+.logo-slot { flex: 0 0 auto; }
+.logo-img { width: 175px; height: 150px; object-fit: contain; }
+
+.hero { width:100%; overflow:hidden; }
+.slider { position:relative; width:100%; height: 340px; overflow:hidden; }
+.slides { 
+  display:flex; 
+  width: 200%; 
+  height:100%; 
+}
+
+.slide { 
+  flex: 0 0 1000px;   /* force each slide to match the 1000px container */
+  height:100%; 
+  display:flex;       /* center the image inside */
+  justify-content:center;
+  align-items:center;
+  background:#fff;    /* or #fff if you prefer white edges */
+}
+
+.slide img {
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  background: #e0e0e0;     /* light grey banner */
+  padding: 8px 12px;
+  margin: 12px 0;
+  width: 100%;
+}
+
+.section-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #b70000;  /* red font */
+}
+
+.red-divider {
+  display: flex;
+  align-items: center;
+  background: #b70000;     /* light red banner */
+  padding: 8px 12px;
+  margin: 12px 0;
+  width: 100%;
+}
+
+.red-divider-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.red-divider-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;  /* white font */
+}
+
+.register-btn {
+  background-color: #b70000;  /* red background */
+  color: #fff;               /* white text */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;       /* rounded rectangle */
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.register-btn:disabled {
+  background-color: #ccc;    /* greyed out when disabled */
+  cursor: not-allowed;
+}
+/* Payment link button style */
+.pay-link {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 15px 0;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+  background-color: royalblue;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pay-link:hover {
+  background-color: #003f9e; /* darker blue on hover */
+  transform: translateY(-2px);
+}
+
+.pay-link:active {
+  background-color: #002f73; /* pressed state */
+  transform: translateY(0);
+}
+
+.content { padding: 20px; overflow: hidden; }
+.content h2 { font-size: 20px; color: #b70000; margin-bottom: 12px; }
+.content p { margin: 12px 0; }
+.content ul { margin: 8px 0 16px 20px; }
+.content li { margin: 8px 0; }
+
+.footer { margin-top: 24px; background:#e9e9ea; color:#555; font-style: italic; font-size:10px; padding:12px 20px; display:flex; align-items:center; gap:10px; }
+/* Back to top button */
+
+.to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: royalblue;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  z-index: 1000;
+}
+
+.to-top:hover {
+  background-color: #003f9e;
+  transform: translateY(-2px);
+}
+
+.to-top:active {
+  background-color: #002f73;
+  transform: translateY(0);
+}
+
+label {
+  color: #b70000;
+  font-weight: bold;
+}
+
+.sublabel {
+  display: block;
+  font-size: 0.9em;
+  font-style: italic;
+  color: grey;
+  margin-top: 2px;
+}
+
+/* 🔔 General alert box */
+.alert {
+  position: relative;
+  padding: 15px 40px 15px 15px;
+  border-radius: 6px;
+  margin: 20px 0;
+  font-size: 14px;
+  line-height: 1.5;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Close button */
+.alert .close-btn {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  color: inherit;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.alert .close-btn:hover {
+  color: #000;
+}
+
+/* ✅ Success message */
+.alert.success {
+  background-color: #e6f9ec;
+  border: 1px solid #28a745;
+  color: #155724;
+  font-weight: bold;
+}
+
+/* ❌ Error message */
+.alert.error {
+  background-color: #fdecea;
+  border: 1px solid #dc3545;
+  color: #721c24;
+}
+
+/* Error list inside alert */
+.alert.error ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.alert.error li {
+  list-style-type: disc;
+}
+
+/* Flex container for action buttons */
+.action-buttons {
+    display: flex;
+    gap: 5px;            /* space between buttons */
+    flex-wrap: wrap;      /* allow wrapping on small screens */
+    justify-content: flex-start;
+}
+
+/* Base button style */
+.create-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;  /* prevent text from breaking */
+}
+
+/* Hover effect for enabled buttons */
+.create-btn:not(.disabled):hover {
+    background-color: #45a049;
+}
+
+/* Disabled button style */
+.create-btn.disabled {
+    background-color: grey !important;
+    cursor: not-allowed !important;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* Status-specific styles */
+.btn-invoice { background-color: #2196F3; }  /* Blue */
+.btn-invoiced { background-color: #FF9800; } /* Orange */
+.btn-paid { background-color: #4CAF50; }     /* Green */
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .title { font-size: 20px; }
+  .subtitle { font-size: 12px; }
+  .logo-img { width: 140px; height: 36px; }
+  .slider { height: 220px; }
+}
