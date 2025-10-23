@@ -5,8 +5,8 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL); 
 
 // Replace these with your actual admin credentials
-$ADMIN_USERNAME = "admin";
-$ADMIN_PASSWORD = "samibla";
+$ADMIN_USERNAME = "";
+$ADMIN_PASSWORD = "";
 
 $errors = [];
 
